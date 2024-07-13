@@ -5,7 +5,7 @@ function todos() {
     return db.todos(TABLA);
 }
 
-function uno() {
+function uno(id) {
     return db.uno(TABLA, id);
 }
 
