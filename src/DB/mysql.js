@@ -38,7 +38,7 @@ conMysql();
 function todos(tabla) {
     return new Promise((resolve, reject) => {
         conexion.query(`SELECT * FROM ${tabla}`, (error, result) => {
-            if (error) return reject(error);
+            return error ? reject(error) : resolve(result);
             resolve(result);
         })
 
@@ -48,8 +48,7 @@ function todos(tabla) {
 function uno(tabla, id) {
     return new Promise((resolve, reject) => {
         conexion.query(`SELECT * FROM ${tabla} WHERE id=${id}`, (error, result) => {
-            if (error) return reject(error);
-            resolve(result);
+            return error ? reject(error) : resolve(result);
         })
     });
 }
@@ -58,7 +57,12 @@ function agregar(tabla, data) {
 
 }
 
-function eliminar(tabla, id) {
+function eliminar(tabla, data) {
+    return new Promise((resolve, reject) => {
+        conexion.query(`DELETE FROM ${tabla} WHERE id = ?`, data.id, (error, result) => {
+            return error ? reject(error) : resolve(result);
+        })
+    });
 
 }
 
