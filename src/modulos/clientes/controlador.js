@@ -10,7 +10,7 @@ function uno(id) {
 }
 
 function eliminar(body) {
-    return db.uno(TABLA, body);
+    return db.eliminar(TABLA, body);
 }
 
 module.exports = {
